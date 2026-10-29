@@ -1,0 +1,172 @@
+{
+  "name": "LeadFlow Form",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Project & Service Inquiry",
+        "formDescription": "Tell us about your business needs. Our team will review your inquiry and get back to you 😀",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What is your name? ",
+              "fieldName": "fullName",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email Address?",
+              "fieldType": "email",
+              "fieldName": "email",
+              "placeholder": "john@email.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Company or Business Name?",
+              "fieldName": "company"
+            },
+            {
+              "fieldLabel": "What service are you interested in?",
+              "fieldType": "dropdown",
+              "fieldName": "service",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Website Design & Development"
+                  },
+                  {
+                    "option": "Ads Management"
+                  },
+                  {
+                    "option": "SEO Services"
+                  },
+                  {
+                    "option": "Social Media Management "
+                  },
+                  {
+                    "option": "Other/Not Sure"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "What do you need help with?",
+              "fieldType": "textarea",
+              "fieldName": "inquiry",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Estimated Budget",
+              "fieldType": "dropdown",
+              "fieldName": "budget",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Under $500"
+                  },
+                  {
+                    "option": "$500 - $1,999"
+                  },
+                  {
+                    "option": "$2,000- $4,999"
+                  },
+                  {
+                    "option": "$5,000+"
+                  },
+                  {
+                    "option": "Not sure yet"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "When do you need the service?",
+              "fieldType": "radio",
+              "fieldName": "timeline",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "As soon as possible"
+                  },
+                  {
+                    "option": "Within one month"
+                  },
+                  {
+                    "option": "Within 1-3 months"
+                  },
+                  {
+                    "option": "Just exploring"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "path": "LeadFLow"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "df961446-7f78-4643-b845-e7f56fdac8dd",
+      "name": "On form submission",
+      "webhookId": "0d4e3878-e399-40a4-b7fb-0b5fa6b4e370"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.automationabc.com/webhook/lead-flow",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{$json}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "9b4b2c38-0315-42ff-87b8-0ce759228f7c",
+      "name": "Post to Webhook",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "PGI3SZE8V9FWFYP3",
+          "name": "BasicAuth"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Post to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d1cf0f38-4eee-4f7f-9d1d-7578f9fef8a9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2946da10cb32e17d3b3d7a3c04192a077fcba729acc5f6701353d5a127ca434e"
+  },
+  "nodeGroups": [],
+  "id": "A9m2mjTKPNlGdy6s",
+  "tags": []
+}
